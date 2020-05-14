@@ -7,8 +7,10 @@ deploy:
 build:
   local:
     push: false
+  googleCloudBuild:
+    projectId: our-pursuit-277220
   artifacts:
-    - image: adnanreza/auth
+    - image: us.gcr.io/our-pursuit-277220/auth
       context: auth
       docker:
         dockerfile: Dockerfile
