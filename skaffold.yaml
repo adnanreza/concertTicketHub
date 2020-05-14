@@ -5,12 +5,13 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  # local:
-  #   push: false
-  googleCloudBuild:
-    projectId: our-pursuit-277220
+   local:
+     push: false
+  # googleCloudBuild:
+  #   projectId: our-pursuit-277220
   artifacts:
-    - image: us.gcr.io/our-pursuit-277220/auth
+    - image: adnanreza/auth
+    #- image: us.gcr.io/our-pursuit-277220/auth
       context: auth
       docker:
         dockerfile: Dockerfile
