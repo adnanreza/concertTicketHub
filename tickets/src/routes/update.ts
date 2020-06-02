@@ -22,14 +22,22 @@ router.put(
   validateRequest,
   async (req: Request, res: Response) => {
     const ticket = await Ticket.findById(req.params.id);
-
+    // No such ticket
     if (!ticket) {
       throw new NotFoundError();
     }
 
+    // Check to see if user owns the ticket that is being updated
     if (ticket.userId !== req.currentUser!.id) {
       throw new NotAuthorizedError();
     }
+
+    // Update the ticket
+    ticket.set({
+      title: req.body.title,
+      price: req.body.price,
+    });
+    await ticket.save();
 
     res.send(ticket);
   }
